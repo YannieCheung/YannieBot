@@ -1,0 +1,96 @@
+{
+  "ClassName": "Hunter",
+  "PathFilename": "_pack\\1-20\\Blood elf\\6-12_Eversong Woods.json",
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Serpent Sting",
+        "Key": "2",
+        "BeforeCastStop": true,
+        "Requirements": [
+          "HasAmmo",
+          "!InMeleeRange",
+          "!Serpent Sting"
+        ]
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "HasRangedWeapon",
+          "HasAmmo",
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "Raptor Strike",
+        "Key": "4",
+        "WhenUsable": true,
+        "AfterCastWaitSwing": true,
+        "Requirements": [
+          "MainHandSwing > -400",
+          "InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoShot",
+          "!AutoAttacking"
+        ]
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Name": "Aspect of the Monkey",
+        "Key": "5",
+        "Requirement": "!Aspect of the Monkey"
+      }
+    ]
+  },
+  "Parallel": {
+    "Sequence": [
+      {
+        "Name": "Food",
+        "Key": "6",
+        "Requirement": "Health% < 30"
+      },
+      {
+        "Name": "Drink",
+        "Key": "7",
+        "Requirement": "Mana% < 30"
+      }
+    ]
+  },
+  "NPC": {
+    "Sequence": [
+      {
+        "Name": "Repair",
+        "Key": "V",
+        "Requirement": "Items Broken",
+        "PathFilename": "1_BloodElf_Vendor.json",
+        "Cost": 6
+      },
+      {
+        "Name": "Sell",
+        "Key": "V",
+        "Requirements": [
+          "BagCount > 72",
+          "BagGreyItem"
+        ],
+        "PathFilename": "1_BloodElf_Vendor.json",
+        "Cost": 6
+      }
+    ]
+  }
+}

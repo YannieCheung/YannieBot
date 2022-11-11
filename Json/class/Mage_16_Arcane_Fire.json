@@ -1,0 +1,117 @@
+{
+  "ClassName": "Mage",
+  "Loot": false,
+  "PathFilename": "16_LochModan.json",
+  "PathThereAndBack": true,
+  "PathReduceSteps": false,
+  "IntVariables": {
+    "Item_Conjure_Drink": 2288,
+    "Item_Conjure_Food": 1113
+  },
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Frostbolt",
+        "HasCastBar": true,
+        "Key": "1",
+        "Requirement": "SpellInRange:3"
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Fire Blast",
+        "Key": "5",
+        "WhenUsable": true,
+        "Requirements": [
+          "TargetHealth%<45",
+          "SpellInRange:4"
+        ]
+      },
+      {
+        "Name": "Frost Nova",
+        "Key": "6",
+        "WhenUsable": true,
+        "Requirement": "InMeleeRange",
+        "AfterCastStepBack": 1000
+      },
+      {
+        "Name": "Fireball",
+        "Key": "2",
+        "HasCastBar": true,
+        "Requirement": "not InMeleeRange"
+      },
+      {
+        "Name": "Arcane Missiles",
+        "Key": "7",
+        "HasCastBar": true,
+        "Requirements": [
+          "SpellInRange:3",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Shoot",
+        "Key": "0",
+        "Item": true,
+        "Requirements": [
+          "HasRangedWeapon",
+          "not Shooting",
+          "SpellInRange:1"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "not HasRangedWeapon",
+          "not AutoAttacking"
+        ]
+      }
+    ]
+  },
+  "Parallel": {
+    "Sequence": [
+      {
+        "Name": "Food",
+        "Key": "=",
+        "Requirement": "Health%<90"
+      },
+      {
+        "Name": "Drink",
+        "Key": "-",
+        "Requirement": "Mana%<90"
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Name": "Frost Armor",
+        "Key": "3",
+        "Requirement": "not Frost Armor"
+      },
+      {
+        "Name": "Arcane Intellect",
+        "Key": "4",
+        "Requirement": "not Arcane Intellect"
+      },
+      {
+        "Name": "Conjure Drink",
+        "Key": "9",
+        "HasCastBar": true,
+        "Requirement": "not BagItem:Item_Conjure_Drink:4",
+        "AfterCastWaitCastbar": true,
+        "AfterCastWaitBag": true
+      },
+      {
+        "Name": "Conjure Food",
+        "Key": "8",
+        "HasCastBar": true,
+        "Requirement": "not BagItem:Item_Conjure_Food:4",
+        "AfterCastWaitCastbar": true,
+        "AfterCastWaitBag": true
+      }
+    ]
+  }
+}

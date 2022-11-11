@@ -1,0 +1,219 @@
+{
+    "ClassName": "DeatkKnight",
+    "Mode": "Grind",
+    "PathFilename": "_pack\\60-70\\Zangarmarsh\\Dead mire outer circle.json", 
+    "PathReduceSteps": true,
+    "PathThereAndBack": true,
+    "MountKey": "N0",
+    "Blacklist": [
+      
+    ],
+    "IntVariables": {
+        "MIN_HP_FOOD%": 40,
+        "MIN_RUNE_TO_DUMP": 40,
+        "Debuff_Frost Fever": 237522,
+        "Debuff_Blood Plague": 237514,
+        "MIN_TIME_REFRESH": 3500
+    },
+    "Form": [
+        {
+          "Name": "Blood Presence",
+          "Key": "F1",
+          "Form": "DeathKnight_Blood_Presence"
+        },
+        {
+          "Name": "Frost Presence",
+          "Key": "F2",
+          "Form": "DeathKnight_Frost_Presence"
+        }
+    ],
+    "Pull": {
+        "Sequence": [
+          {
+            "Name": "Death Coil",
+            "Key": "8",
+            "WhenUsable": true,
+            "Requirements": [
+              "MinRange > 25",
+              "SpellInRange:1",
+              "RunicPower >= MIN_RUNE_TO_DUMP"
+            ],
+            "AfterCastWaitCombat": true
+          },
+          {
+            "Name": "Icy Touch",
+            "Key": "6",
+            "WhenUsable": true,
+            "Requirements": [
+              "!TargetCastingSpell",
+              "!Frost Fever",
+              "SpellInRange:0"
+            ],
+            "AfterCastAuraExpected": true,
+            "AfterCastWaitCombat": true
+          },
+          {
+            "Name": "Death Grip",
+            "Key": "0",
+            "WhenUsable": true,
+            "Requirements": [
+              "SpellInRange:2"
+            ],
+            "AfterCastWaitCombat": true,
+            "AfterCastWaitMeleeRange": true
+          }
+        ]
+    },
+    "Combat": {
+        "Sequence": [
+          {
+            "Name": "Mind Freeze",
+            "Key": "9",
+            "WhenUsable": true,
+            "Requirements": [
+              "InMeleeRange",
+              "TargetCastingSpell"
+            ]
+          },
+          {
+            "Name": "Death Strike",
+            "Key": "F5",
+            "WhenUsable": true,
+            "Requirements": [
+              "Health% < 70"
+            ]
+          },
+          {
+            "Name": "Death Coil",
+            "Key": "8",
+            "WhenUsable": true,
+            "Requirements": [
+              "MobCount < 2",
+              "RunicPower >= 100",
+              "SpellInRange:1"
+            ]
+          },
+          {
+            "Name": "Blood Boil",
+            "Key": "1",
+            "WhenUsable": true,
+            "Requirements": [
+              "MobCount > 1",
+              "Frost Fever",
+              "Blood Plague",
+              "InMeleeRange"
+            ]
+          },
+          {
+            "Name": "Blood Strike",
+            "Key": "3",
+            "WhenUsable": true,
+            "Charge": 2,
+            "Cooldown": 2000,
+            "Requirements": [
+              "MobCount < 2",
+              "Debuff_Frost Fever > MIN_TIME_REFRESH && Debuff_Blood Plague > MIN_TIME_REFRESH",
+              "InMeleeRange"
+            ]
+          },
+          {
+            "Name": "Heart Strike",
+            "Key": "7",
+            "WhenUsable": true,
+            "Requirements": [
+              "MobCount > 1",
+              "Debuff_Frost Fever > MIN_TIME_REFRESH && Debuff_Blood Plague > MIN_TIME_REFRESH",
+              "InMeleeRange"
+            ],
+            "AfterCastAuraExpected": true
+          },
+          {
+            "Name": "Obliterate",
+            "Key": "4",
+            "WhenUsable": true,
+            "Requirements": [
+                "MobCount < 2",
+                "Frost Fever",
+                "Blood Plague",
+                "InMeleeRange"
+            ]
+          },
+          {
+            "Name": "Icy Touch",
+            "Key": "6",
+            "WhenUsable": true,
+            "Requirements": [
+              "!Frost Fever",
+              "SpellInRange:0"
+            ],
+            "AfterCastAuraExpected": true
+          },
+          {
+            "Name": "Plague Strike",
+            "Key": "5",
+            "WhenUsable": true,
+            "Requirements": [
+              "!Blood Plague",
+              "InMeleeRange"
+            ],
+            "AfterCastAuraExpected": true
+          },
+          {
+            "Name": "AutoAttack",
+            "Requirements": [
+              "!AutoAttacking"
+            ]
+          },
+          {
+            "Name": "Approach",
+            "Log": false
+          }
+        ]
+    },
+    "Adhoc": {
+        "Sequence": [
+          {
+            "Cost": 3.2,
+            "Name": "Raise Dead",
+            "Key": "F7",
+            "InCombat": "true",
+            "WhenUsable": true,
+            "Requirements": [
+              "!Has Pet",
+              "!Mounted",
+              "BagItem:37201:1"
+            ]
+          }
+        ]
+    },
+    "Parallel": {
+        "Sequence": [
+          {
+            "Name": "Food",
+            "Key": "=",
+            "Requirement": "Health% < MIN_HP_FOOD%"
+          }
+        ]
+    },
+    "NPC": {
+        "Sequence": [
+          {
+            "Cost": 6,
+            "Name": "Repair",
+            "Key": "C",
+            "Requirement": "Items Broken",
+            "PathFilename": "63-64 The Death Mire_Vendor.json"
+          },
+          {
+            "Cost": 6,
+            "Name": "Sell",
+            "Key": "C",
+            "Requirements": [
+              "BagCount > 72",
+              "BagGreyItem"
+            ],
+            "PathFilename": "63-64 The Death Mire_Vendor.json"
+          }
+        ]
+    }
+}

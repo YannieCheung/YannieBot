@@ -1,0 +1,108 @@
+{
+  "ClassName": "Mage",
+  "Loot": true,
+  "PathFilename": "1-5_Gnome.json",
+  "PathThereAndBack": true,
+  "PathReduceSteps": false,
+  "IntVariables": {
+    "MIN_WATER%": 20,
+    "MIN_MANA_FIREBALL%": 40,
+    "Item_Conjure_Drink": 5350
+  },
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Frostbolt",
+        "HasCastBar": true,
+        "Key": "1",
+        "Requirements": [
+          "SpellInRange:3",
+          "Mana% > MIN_MANA_FIREBALL%"
+        ]
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Fireball",
+        "Key": "2",
+        "HasCastBar": true,
+        "Requirements": [
+          "TargetHealth% > 20",
+          "Mana% > MIN_MANA_FIREBALL%"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirement": "!AutoAttacking",
+        "Log": false
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Parallel": {
+    "Sequence": [
+      {
+        "Name": "Food",
+        "Key": "=",
+        "Requirement": "Health% < MIN_WATER%"
+      },
+      {
+        "Name": "Drink",
+        "Key": "-",
+        "Requirement": "Mana% < MIN_WATER%"
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Name": "Frost Armor",
+        "Key": "3",
+        "Requirement": "!Frost Armor"
+      },
+      {
+        "Name": "Arcane Intellect",
+        "Key": "4",
+        "Requirement": "not Arcane Intellect"
+      },
+      {
+        "Name": "Conjure Drink",
+        "Key": "9",
+        "HasCastBar": true,
+        "Requirement": "!BagItem:Item_Conjure_Drink:4",
+        "AfterCastWaitCastbar": true,
+        "AfterCastWaitBag": true
+      }
+    ]
+  },
+  "NPC": {
+    "Sequence": [
+      {
+        "Name": "Repair",
+        "Key": "C",
+        "Requirement": "Items Broken",
+        "PathFilename": "1_Gnome_Vendor.json",
+        "Cost": 6
+      },
+      {
+        "Name": "Sell",
+        "Key": "C",
+        "Requirements": [
+          "BagFull",
+          "BagGreyItem"
+        ],
+        "PathFilename": "1_Gnome_Vendor.json",
+        "Cost": 6
+      }
+    ]
+  }
+}

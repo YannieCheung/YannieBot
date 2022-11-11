@@ -1,0 +1,89 @@
+﻿@page "/Search"
+
+@using PPather
+@using PPather.Data
+@using PPather.Graph
+@using System.Numerics
+@using System.Threading
+
+@inject IJSRuntime jsRuntime
+@inject PPatherService pPatherService
+
+<Watch PathColour="@pathColour" Name="@name" />
+
+<span>
+    <SearchParameters OnSearch="OnSearch" IsDisabled="@IsDisabled" />
+</span>
+@code {
+    bool IsDisabled = true;
+
+    PathGraph.eSearchScoreSpot searchType;
+    int pathColour = 1;
+    string name;
+    SearchParam parameters;
+
+    System.Threading.Thread searchPathThread;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeVoidAsync("createScene");
+            PathGraph.SearchEnabled = true;
+            pPatherService.Reset();
+
+            IsDisabled = false;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public async Task OnSearch(SearchParam searchParameters)
+    {
+        if (searchParameters.From == null || searchParameters.To == null)
+        {
+            return;
+        }
+        this.parameters = searchParameters;
+
+        await DoSearch(parameters.SearchType, ((int)parameters.SearchType) + 1, parameters.SearchType.ToString());
+    }
+
+    private async Task DoSearch(PathGraph.eSearchScoreSpot searchType, int colour, string name)
+    {
+        IsDisabled = true;
+
+        this.searchType = searchType;
+        this.pathColour = colour;
+        this.name = name;
+
+        PathGraph.SearchEnabled = true;
+        PathGraph.ProgressTimeoutSeconds = 60;
+        PathGraph.TimeoutSeconds = 600;
+
+        await InvokeAsync(StateHasChanged);
+
+        searchPathThread = new Thread(SearchPathThread);
+        searchPathThread.Start();
+    }
+
+    public async void SearchPathThread()
+    {
+        try
+        {
+            await jsRuntime.InvokeVoidAsync("removeMeshes", name);
+            await jsRuntime.InvokeVoidAsync("removeMeshes", "search");
+
+            pPatherService.SetLocations(parameters.From.Location, parameters.To.Location);
+
+            var patherPath = pPatherService.DoSearch(searchType);
+
+            IsDisabled = false;
+        }
+        catch (Exception ex)
+        {
+            await jsRuntime.InvokeVoidAsync("log", ex.Message);
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+}
