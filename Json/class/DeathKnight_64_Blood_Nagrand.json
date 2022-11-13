@@ -189,6 +189,29 @@
         }
       ]
   },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3.1,
+        "Name": "Horn of Winter",
+        "Key": "F4",
+        "InCombat": "i dont care",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Horn of Winter",
+          "!Mounted"
+        ]
+      },
+      {
+        "Name": "useshadow",
+        "Key": "F9",
+        "WhenUsable": true,
+        "Requirements": [
+          "BagItem:22577:10"
+        ]
+      }
+    ]
+  },
   "Parallel": {
       "Sequence": [
         {
