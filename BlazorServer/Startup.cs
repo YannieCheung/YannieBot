@@ -34,7 +34,7 @@ namespace BlazorServer
 
             var logfile = "out.log";
             var config = new LoggerConfiguration()
-                .MinimumLevel.Warning()
+                .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .WriteTo.LoggerSink()
                 .WriteTo.File(logfile, rollingInterval: RollingInterval.Day)

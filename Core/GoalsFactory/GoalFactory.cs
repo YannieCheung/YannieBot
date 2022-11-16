@@ -231,6 +231,7 @@ namespace Core
                 UnitClass.DeathKnight)
             {
                 services.AddSingleton<GoapGoal, TargetPetTargetGoal>();
+                services.AddSingleton<GoapGoal, TargetPetTargetGoalAndTargetIsDead>();
             }
         }
 

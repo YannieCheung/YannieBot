@@ -3,7 +3,13 @@
   "PathFilename": "_azeroth\\Ashenvale 18-20.json",
   "PathThereAndBack": false,
   "NPCMaxLevels_Above": 4,
-  "NPCMaxLevels_Below": 4,
+  "NPCMaxLevels_Below": 5,
+  "MountKey": "N0",
+  "IntVariables": {
+    "MIN_MANA_VIPER%": 40,
+    "MIN_MANA_HAWK%": 70,
+    "MIN_TARGET_HP_CD%": 75
+  },
   "Pull": {
     "Sequence": [
       {
@@ -54,7 +60,7 @@
         "Requirements": [
           "!InMeleeRange",
           "!Serpent Sting",
-          "Mana% > 55"
+          "Mana% > 40"
         ]
       },
       {
@@ -89,12 +95,23 @@
   "Adhoc": {
     "Sequence": [
       {
-        "Cost": 3.3,
-        "Name": "Aspect of the Hawk",
+        "Cost": 3.1,
+        "Name": "Aspect of the Viper",
         "Key": "F1",
         "InCombat": "i dont care",
         "Requirements": [
-          "!Aspect of the Hawk"
+          "!Aspect of the Viper",
+          "Mana% < MIN_MANA_VIPER%"
+        ]
+      },
+      {
+        "Cost": 3.2,
+        "Name": "Aspect of the Hawk",
+        "Key": "F2",
+        "InCombat": "i dont care",
+        "Requirements": [
+          "!Aspect of the Hawk",
+          "Mana% > MIN_MANA_HAWK%"
         ]
       },
       {
