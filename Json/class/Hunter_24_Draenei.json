@@ -1,7 +1,7 @@
 {
   "ClassName": "Hunter",
-  "PathFilename": "_azeroth\\Ashenvale 18-20.json",
-  "PathThereAndBack": false,
+  "PathFilename": "_azeroth\\Ashenvale 23-24.json",
+  "PathThereAndBack": true,
   "NPCMaxLevels_Above": 4,
   "NPCMaxLevels_Below": 5,
   "MountKey": "N0",
