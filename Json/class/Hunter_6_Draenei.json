@@ -1,0 +1,125 @@
+{
+  "ClassName": "Hunter",
+  "PathFilename": "_azeroth\\Azuremyst Isle 5-9.json",
+  "PathThereAndBack": true,
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Hunter's Mark",
+        "WhenUsable": true,
+        "Key": "2",
+        "Requirements": [
+          "!Hunter's Mark"
+        ]
+      },
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Gift of the Naaru",
+        "Key": "1",
+        "WhenUsable": true,
+        "Requirements": [
+          "Race:Draenei",
+          "Health% < 45"
+        ]
+      },
+      {
+        "Name": "Serpent Sting",
+        "WhenUsable": true,
+        "Cooldown": 7000,
+        "Key": "5",
+        "AfterCastWaitCombat": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!Serpent Sting",
+          "Mana% > 55"
+        ]
+      },
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "Raptor Strike",
+        "Key": "4",
+        "WhenUsable": true,
+        "AfterCastWaitSwing": true,
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoAttacking"
+        ]
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3.3,
+        "Name": "Aspect of the Monkey",
+        "Key": "6",
+        "InCombat": "i dont care",
+        "Requirements": [
+          "!Aspect of the Monkey"
+        ]
+      }
+    ]
+  },
+  "Parallel": {
+    "Sequence": [
+      {
+        "Name": "Food",
+        "Key": "-",
+        "Requirement": "Health% < 40"
+      },
+      {
+        "Name": "Drink",
+        "Key": "=",
+        "Requirement": "Mana% < 10"
+      }
+    ]
+  },
+  "NPC": {
+    "Sequence": [
+      {
+        "Cost": 6,
+        "Name": "Repair",
+        "Key": "C",
+        "Requirement": "Items Broken",
+        "PathFilename": "_azeroth\\Azuremyst Isle 5-9 Ziz_Vendor.json"
+      },
+      {
+        "Cost": 6,
+        "Name": "Sell",
+        "Key": "C",
+        "Requirements": [
+          "BagFull",
+          "BagGreyItem"
+        ],
+        "PathFilename": "_azeroth\\Azuremyst Isle 5-9 Ziz_Vendor.json"
+      }
+    ]
+  }
+}

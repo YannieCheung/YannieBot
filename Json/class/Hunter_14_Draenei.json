@@ -1,0 +1,154 @@
+{
+  "ClassName": "Hunter",
+  "PathFilename": "_azeroth\\Bloodmyst Isle 15-16.json",
+  "PathThereAndBack": false,
+  "NPCMaxLevels_Above": 4,
+  "NPCMaxLevels_Below": 4,
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Hunter's Mark",
+        "WhenUsable": true,
+        "Key": "2",
+        "Requirements": [
+          "!Hunter's Mark"
+        ]
+      },
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Mend Pet",
+        "Key": "F11",
+        "Cooldown": 15000,
+        "Requirements": [
+          "Has Pet",
+          "PetHealth% < 60"
+        ]
+      },
+      {
+        "Name": "Gift of the Naaru",
+        "Key": "F12",
+        "WhenUsable": true,
+        "Requirements": [
+          "Race:Draenei",
+          "Health% < 45"
+        ]
+      },
+      {
+        "Name": "Serpent Sting",
+        "WhenUsable": true,
+        "Cooldown": 7000,
+        "Key": "5",
+        "AfterCastWaitCombat": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!Serpent Sting",
+          "Mana% > 55"
+        ]
+      },
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "Raptor Strike",
+        "Key": "4",
+        "WhenUsable": true,
+        "AfterCastWaitSwing": true,
+        "AfterCastStepBack": 1000,
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoAttacking"
+        ]
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3.3,
+        "Name": "Aspect of the Hawk",
+        "Key": "F1",
+        "InCombat": "i dont care",
+        "Requirements": [
+          "!Aspect of the Hawk"
+        ]
+      },
+      {
+        "Name": "feedpet",
+        "Key": "N5",
+        "WhenUsable": true,
+        "Cooldown": 20000,
+        "Requirements": [
+          "Has Pet",
+          "!Pet Happy"
+        ]
+      },
+      {
+        "Name": "sumpet",
+        "Key": "N6",
+        "HasCastBar": true,
+        "Cooldown": 4000,
+        "Requirement": "!Has Pet"
+      }
+    ]
+  },
+  "Parallel": {
+    "Sequence": [
+      {
+        "Name": "Food",
+        "Key": "-",
+        "Requirement": "Health% < 40"
+      },
+      {
+        "Name": "Drink",
+        "Key": "=",
+        "Requirement": "Mana% < 10"
+      }
+    ]
+  },
+  "NPC": {
+    "Sequence": [
+      {
+        "Cost": 6,
+        "Name": "Repair",
+        "Key": "C",
+        "Requirement": "Items Broken",
+        "PathFilename": "_azeroth\\Bloodmyst Isle 15-16 Beega_Vendor.json"
+      },
+      {
+        "Cost": 6,
+        "Name": "Sell",
+        "Key": "C",
+        "Requirements": [
+          "BagFull",
+          "BagGreyItem"
+        ],
+        "PathFilename": "_azeroth\\Bloodmyst Isle 15-16 Beega_Vendor.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "ClassName": "Hunter",
+  "PathFilename": "_azeroth\\Azuremyst Isle 1-2 Ammen Vale.json",
+  "PathThereAndBack": false,
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "HasRangedWeapon",
+          "!InMeleeRange",
+          "!AutoShot",
+          "HasAmmo"
+        ]
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Gift of the Naaru",
+        "Key": "1",
+        "WhenUsable": true,
+        "Requirements": [
+          "Race:Draenei",
+          "Health% < 45"
+        ]
+      },
+      {
+        "Name": "Auto Shot",
+        "Key": "3",
+        "Item": true,
+        "Requirements": [
+          "!InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "Raptor Strike",
+        "Key": "4",
+        "WhenUsable": true,
+        "AfterCastWaitSwing": true,
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoShot"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "InMeleeRange",
+          "!AutoAttacking"
+        ]
+      }
+    ]
+  },
+  "NPC": {
+    "Sequence": [
+      {
+        "Cost": 6,
+        "Name": "Repair",
+        "Key": "C",
+        "Requirement": "Items Broken",
+        "PathFilename": "_azeroth\\Azuremyst Isle 1-2 Ammen Vale Jel_Vendor.json"
+      },
+      {
+        "Cost": 6,
+        "Name": "Sell",
+        "Key": "C",
+        "Requirements": [
+          "BagFull",
+          "BagGreyItem"
+        ],
+        "PathFilename": "_azeroth\\Azuremyst Isle 1-2 Ammen Vale Jel_Vendor.json"
+      }
+    ]
+  }
+}

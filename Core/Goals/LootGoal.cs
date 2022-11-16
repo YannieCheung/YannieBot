@@ -268,6 +268,7 @@ namespace Core.Goals
                     if (!MinRangeZero())
                     {
                         (bool timeout, double elapsedMs) = wait.Until(MAX_TIME_TO_REACH_MELEE, MinRangeZero, input.ApproachOnCooldown);
+                        wait.Fixed(1000);
                         Log($"Reached Last Target ? {!timeout} {elapsedMs}ms");
                     }
                 }
